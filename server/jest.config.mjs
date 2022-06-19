@@ -74,8 +74,6 @@ export default {
   // moduleDirectories: [
   //   "node_modules"
   // ],
-
-  extensionsToTreatAsEsm: [".jsx"],
   
   // An array of file extensions your modules use
   // moduleFileExtensions: [
