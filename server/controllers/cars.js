@@ -15,10 +15,14 @@ const CarsController = {
     })
   },
   AddCar: (req, res) => {
-    console.log(req.body)
     Car.create(req.body, (err, car) => {
       res.status(200).json({ message: "Car has been added"})
     });
+  },
+  AmendCar: (req, res) => {
+    Car.findByIdAndUpdate(req.params.id, req.body, () => {
+      res.status(200).json({ message: "Car has been amended" })
+    })
   }
 };
 

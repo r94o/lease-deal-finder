@@ -57,11 +57,25 @@ describe("GET /cars/:id", () => {
 
 })
 
-describe("POST /cars/:id", () => {
+describe("POST /cars/", () => {
   test("Car is added to the collection", async() => {
-    const { body } = await request(app).post("/cars").send(createCar())
+    const { header, statusCode, body } = await request(app).post("/cars").send(createCar())
     const cars = await Car.find({})
+    expect(header["content-type"]).toMatch(/json/);
+    expect(statusCode).toBe(200);
     expect(cars).toMatchObject([createCar()])
     expect(body.message).toBe("Car has been added")
+  })
+})
+
+describe("PATCH /cars/:id", () => {
+  test("car lowest price is updated", async() => {
+    const { _id } = await Car.create(createCar());
+    const { header, statusCode, body } = await request(app).patch(`/cars/${_id}`).send({ lowestPrice: 150 });
+    const car = await Car.findById(_id);
+    expect(header["content-type"]).toMatch(/json/);
+    expect(statusCode).toBe(200);
+    expect(body.message).toBe("Car has been amended")
+    expect(car.lowestPrice).toBe(150);
   })
 })
