@@ -3,5 +3,7 @@ const router = express.Router();
 const CarsController = require('../controllers/cars');
 
 router.get("/", CarsController.Index);
+router.get("/:id", CarsController.FindById);
+router.post("/", CarsController.AddCar)
 
 module.exports = router;
