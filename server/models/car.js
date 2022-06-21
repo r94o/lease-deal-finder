@@ -1,9 +1,6 @@
 const mongoose = require("mongoose");
 
-const PriceSchema = new mongoose.Schema({
-  price: Number,
-  timestamps: true
-})
+const PriceSchema = new mongoose.Schema({ price: Number }, { timestamps: true });
 
 const CarSchema = new mongoose.Schema({
   make: {
@@ -14,19 +11,19 @@ const CarSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  variant: {
+    type: String,
+    required: true
+  },
   notificationThreshold: {
     type: Number,
-    required: true
   },
   lowestPrice: {
-    type: PriceSchema,
-    required: true
-  },
-  prices: {
-    type: [PriceSchema],
+    type: Number,
     required: true
   }
 });
+
 
 const Car = mongoose.model("Car", CarSchema);
 module.exports = Car;

@@ -1,8 +1,13 @@
+const Car = require('../models/car');
+
+
 const CarsController = {
   Index: (req, res) => {
-    res.status(200).json({})
+    Car.find((err, cars) => {
+      if (err) throw err;
+      res.json(cars);
+    })
   }
-
 };
 
 module.exports = CarsController;
