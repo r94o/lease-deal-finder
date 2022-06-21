@@ -37,9 +37,7 @@ describe("GET /cars/:id", () => {
     test("the car specified is returned", async () => {
       const car = await Car.create(createCar());
       const secondCar = await Car.create(createCar());
-
       const { header, statusCode, body } = await request(app).get(`/cars/${car._id}`);
-
       expect(header["content-type"]).toMatch(/json/);
       expect(statusCode).toBe(200);
       expect(body).toMatchObject(createCar());
@@ -48,7 +46,6 @@ describe("GET /cars/:id", () => {
   describe("when the id is not present in the collection", () => {
     test("a 404 is returned", async () => {
       const { header, statusCode, body } = await request(app).get(`/cars/62b19b7c7a473892edd685a2`);
-
       expect(header["content-type"]).toMatch(/json/);
       expect(statusCode).toBe(404);
       expect(body).toMatchObject({ error: 'Car Not Found'});
@@ -77,5 +74,16 @@ describe("PATCH /cars/:id", () => {
     expect(statusCode).toBe(200);
     expect(body.message).toBe("Car has been amended")
     expect(car.lowestPrice).toBe(150);
+  })
+})
+
+describe("DELETE /cars/:id", () => {
+  test("car gets deleted", async() => {
+    const { _id } = await Car.create(createCar());
+    const { header, statusCode, body } = await request(app).delete(`/cars/${_id}`)
+    const car = await Car.findById(_id);
+    expect(statusCode).toBe(200);
+    expect(body.message).toBe("Car has been deleted")
+    expect(car).toBeNull();
   })
 })

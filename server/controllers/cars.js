@@ -23,6 +23,11 @@ const CarsController = {
     Car.findByIdAndUpdate(req.params.id, req.body, () => {
       res.status(200).json({ message: "Car has been amended" })
     })
+  },
+  DeleteCar: (req, res) => {
+    Car.findByIdAndDelete(req.params.id, () => {
+      res.status(200).json({ message: "Car has been deleted" })
+    })
   }
 };
 

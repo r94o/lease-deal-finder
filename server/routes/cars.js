@@ -6,5 +6,6 @@ router.get("/", CarsController.Index);
 router.get("/:id", CarsController.FindById);
 router.post("/", CarsController.AddCar);
 router.patch("/:id", CarsController.AmendCar);
+router.delete("/:id", CarsController.DeleteCar);
 
 module.exports = router;
