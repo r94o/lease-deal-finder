@@ -100,3 +100,4 @@ describe("GET /cars/notifications", () => {
     expect(body).toMatchObject([createCar({ notification: true })]);
   })
 })
+
