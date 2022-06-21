@@ -12,7 +12,6 @@ describe("GET /cars", () => {
   describe("when database is empty", () => {
     test("returns an empty array", async () => {
       const { header, statusCode, body } = await request(app).get("/cars")
-
       expect(header["content-type"]).toMatch(/json/);
       expect(statusCode).toBe(200);
       expect(body).toEqual([]);
@@ -22,9 +21,7 @@ describe("GET /cars", () => {
     test("returns all car objects", async () => {
       await Car.create(createCar());
       await Car.create(createCar());
-
       const { header, statusCode, body} = await request(app).get("/cars");
-
       expect(header["content-type"]).toMatch(/json/);
       expect(statusCode).toBe(200);
       expect(body).toMatchObject([createCar(), createCar()]);
