@@ -87,3 +87,16 @@ describe("DELETE /cars/:id", () => {
     expect(car).toBeNull();
   })
 })
+
+describe("GET /cars/notifications", () => {
+  test("returns only cars with notification flag", async() => {
+    await Car.create(createCar());
+    await Car.create(createCar({ notification: true}));
+  
+    const { header, statusCode, body} = await request(app).get("/cars/notifications");
+  
+    expect(header["content-type"]).toMatch(/json/);
+    expect(statusCode).toBe(200);
+    expect(body).toMatchObject([createCar({ notification: true })]);
+  })
+})

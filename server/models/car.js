@@ -18,6 +18,10 @@ const CarSchema = new mongoose.Schema({
   notificationThreshold: {
     type: Number,
   },
+  notification: {
+    type: Boolean,
+    default: false
+  },
   lowestPrice: {
     type: Number,
     required: true

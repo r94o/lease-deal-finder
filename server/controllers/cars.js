@@ -28,6 +28,11 @@ const CarsController = {
     Car.findByIdAndDelete(req.params.id, () => {
       res.status(200).json({ message: "Car has been deleted" })
     })
+  },
+  CarNotifications: (req, res) => {
+    Car.find({ notification: true }, (err, cars) => {
+      res.status(200).json(cars);
+    })
   }
 };
 
