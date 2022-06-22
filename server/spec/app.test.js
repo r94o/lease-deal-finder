@@ -24,6 +24,7 @@ describe("GET /cars", () => {
       const { header, statusCode, body} = await request(app).get("/cars");
       expect(header["content-type"]).toMatch(/json/);
       expect(statusCode).toBe(200);
+      console.log(body)
       expect(body).toMatchObject([createCar(), createCar()]);
     }) 
   })
