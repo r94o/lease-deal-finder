@@ -6,14 +6,7 @@ import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
 export default function SelectBox() {
-  const [cars, setCars] = useState([]);
-  const [car, setCar] = useState("");
 
-  useEffect(() => {
-    fetch("http://127.0.0.1:3001/cars")
-      .then(response => response.json())
-      .then(cars => setCars(cars))
-  }, [])
 
   const handleChange = (event) => {
     setCar(cars[event.target.value])

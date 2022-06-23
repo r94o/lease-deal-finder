@@ -1,9 +1,12 @@
-import SelectBox from "./components/SelectBox/SelectBox";
+import CarDisplay from "./components/CarDisplay/CarDisplay";
+import React from 'react';
 
 function App() {
+
+
   return (
     <div>
-      <SelectBox />
+      <CarDisplay />
     </div>
   );
 }

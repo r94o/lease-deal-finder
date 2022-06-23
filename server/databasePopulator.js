@@ -1,9 +1,10 @@
+require("dotenv").config({ path: './server/.env'})
 const mongoose = require("mongoose")
 const Car = require("./models/car")
 
 
 const populate = async() => {
-  mongoose.connect("mongodb+srv://robo:B04I2SKGnV47BAQX@cluster0.peisi.mongodb.net/lease-deal-finder");
+  mongoose.connect(process.env.MONGODB_DEV_URI);
   const db = mongoose.connection;
 
   db.on("error", () => console.log("hi")); 
